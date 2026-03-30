@@ -35,28 +35,24 @@ double expn(double x, uint16_t count) {
 
 double sinn(double x, uint16_t count) {
   double sum = 0.0;
-  for (uint16_t n = 0; n <= count + 5; ++n) {
-    uint16_t pow = 2 * n + 1;
-    double a = calcItem(x, pow);
-    if (n % 2 == 0) {
-      sum += a;
-    } else {
-      sum -= a;
-    }
+  double term = x;
+  int sign = 1;
+  for (uint16_t n = 0; n <= count; ++n){
+    sum += sign * term;
+    term *= x * x / ((2 * n + 2) * (2 * n + 3));
+    sign *= -1;
   }
   return sum;
 }
 
 double cosn(double x, uint16_t count) {
   double sum = 0.0;
-  for (uint16_t n = 0; n <= count + 5; ++n) {
-    uint16_t pow = 2 * n;
-    double a = calcItem(x, pow);
-    if (n % 2 == 0) {
-      sum += a;
-    } else {
-      sum -= a;
-    }
+  double term = 1.0;
+  int sign = 1;
+  for (uint16_t n = 0; n <= count; ++n){
+    sum += sign * term;
+    term *= x * x / ((2 * n + 1) * (2 * n + 2));
+    sign *= -1;
   }
   return sum;
 }
